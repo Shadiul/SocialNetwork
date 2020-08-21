@@ -7,9 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/main_page_toolbar"
+            layout="@layout/app_bar_layout"/>
 
         <FrameLayout
             android:id="@+id/main_container"
@@ -21,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
