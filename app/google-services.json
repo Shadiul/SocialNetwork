@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "261692453483",
+    "firebase_url": "https://social-network-c7b9a.firebaseio.com",
+    "project_id": "social-network-c7b9a",
+    "storage_bucket": "social-network-c7b9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261692453483:android:dd9e5780a235bc958bb72e",
+        "android_client_info": {
+          "package_name": "com.creatic.socialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261692453483-j3mbrds5pte6j60k36voale6o1egtf8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmZ6-3vFhvxuT7yMkkJoGxneEMLA2-kkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261692453483-j3mbrds5pte6j60k36voale6o1egtf8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
