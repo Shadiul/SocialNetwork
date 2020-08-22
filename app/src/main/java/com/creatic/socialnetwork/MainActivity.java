@@ -8,30 +8,41 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private RecyclerView postList;
     private Toolbar mToolbar;
-
+    private TextView navUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Home");
+
+        navUserName = findViewById(R.id.nav_user_full_name);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(
@@ -54,6 +65,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null){
+            sendUserToLoginActivity();
+        }
+    }
+
+    private void sendUserToLoginActivity() {
+        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(loginIntent);
+        finish();
     }
 
     @Override
@@ -85,10 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+                mAuth.signOut();
+                sendUserToLoginActivity();
                 break;
         }
     }
+
 
 
 }
